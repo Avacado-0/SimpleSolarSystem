@@ -61,7 +61,7 @@ class GraphicsEngine:
             self.camera.update()
             self.render()
             self.frame_rate = self.clock.tick(60)  # sets up how fast the game should run.
-            # There will be ~ 60 frames per second. self.delta_time will be the frame rate
+            # There will be ~ 60 frames per second.
 
 if __name__ == '__main__':
     # runs everything
