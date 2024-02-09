@@ -64,5 +64,6 @@ class GraphicsEngine:
             # There will be ~ 60 frames per second. self.delta_time will be the frame rate
 
 if __name__ == '__main__':
+    # runs everything
     app = GraphicsEngine()
     app.run()
