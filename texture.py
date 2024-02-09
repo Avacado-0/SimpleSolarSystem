@@ -1,0 +1,31 @@
+import pygame as pg
+import moderngl as mgl
+
+
+class Texture:
+    def __init__(self, ctx):
+        self.ctx = ctx
+        self.textures = {}
+        self.textures['sun'] = self.get_texture(path='objects/sphere_blender/oragne.png')
+        # planets
+        self.textures[0] = self.get_texture(path='objects/sphere_blender/brown.png')
+        self.textures[1] = self.get_texture(path='objects/sphere_blender/purple.png')
+        self.textures[2] = self.get_texture(path='objects/sphere_blender/blue.png')
+        self.textures[3] = self.get_texture(path='objects/sphere_blender/red.png')
+        # background
+        self.textures['cube'] = self.get_texture(path='textures/ugly_polka_dots.png')
+
+    def get_texture(self, path):
+        texture = pg.image.load(path).convert()
+        texture = pg.transform.flip(texture, flip_x=False, flip_y=True)
+        texture = self.ctx.texture(size=texture.get_size(), components=3,
+                                   data=pg.image.tostring(texture, 'RGB'))
+        # mipmaps will make distance look better
+        texture.filter = (mgl.LINEAR_MIPMAP_LINEAR, mgl.LINEAR)
+        texture.build_mipmaps()
+        # AF
+        texture.anisotropy = 32.0
+        return texture
+
+    def destroy(self):
+        [tex.release() for tex in self.textures.values()]
