@@ -8,7 +8,7 @@ Moving the mouse will rotate the view
 
 The following modules will need to be installed for code to run:
 pip install pygame
-            modergl
+            moderngl
             pywavefront
             pyglm
             numpy
